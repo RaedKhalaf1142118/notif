@@ -1,0 +1,26 @@
+<ion-header class="main-nav-header">
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-note>
+      {{myCity == undefined?'City':myCity.cityName}} : Categories
+    </ion-note>
+    <hr>
+    <div *ngIf="categories == undefined">
+      <ion-spinner name="bubbles"></ion-spinner>
+    </div> 
+    <div *ngIf="categories != undefined">
+      <div *ngIf="canAddCategory()">
+        <button ion-button block color="primary" class="add-button" (click)="addCategory()">
+           <ion-icon name="ios-add-circle-outline" class="add-icon"></ion-icon>
+        </button>
+      </div>
+      <category *ngFor="let category of categories" [category]="category"></category>
+    </div>
+</ion-content>

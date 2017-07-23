@@ -1,0 +1,38 @@
+notification {
+
+}
+
+.notification-title-container{
+    margin-left: 12px;
+    margin-top: 3px;
+}
+
+.card-container{
+    background-color: #f5feef;
+}
+
+.card-header-container{
+    background-color: #f5feef;
+}
+
+div.replay-container{
+    background-color: rgba(141, 218, 143, 0.16);
+    text-align: center;
+    span{
+        font-family: monospace;
+        font-size: 16px;
+    }
+
+    ion-icon{
+        font-size: 25px;
+    }
+
+    .icon-spacer-container{
+        width: 27em;
+    }
+
+    button{
+        background-color: rgba(83, 158, 179, 0.73);
+        height: 2.2em;
+    }
+}

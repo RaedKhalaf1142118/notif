@@ -1,0 +1,162 @@
+page-login {
+    .background {
+		background-image: url('https://s-media-cache-ak0.pinimg.com/originals/3b/68/e1/3b68e119feeed6f7e162c01e400495f8.jpg');
+	}
+
+	.scroll-content {
+		align-content: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		text-align: center;
+	}
+
+	ion-card.card {
+		box-shadow: none;
+		background: rgba(0, 0, 0, 0.5);
+		border-radius: 5px;
+	}
+
+	a, p,
+	ion-card-header.card-header {
+		color: #fff!important;
+	}
+
+	.list > .item-block:first-child {
+		border: medium none;
+	}
+
+	.item {
+		margin-bottom: 10px;
+		background: rgba(255, 255, 255, 0.5);
+		border: medium none;
+
+		.text-input, {
+			color: #fff;
+		}
+
+		input::-moz-placeholder  {
+			color: #fff!important;
+		}
+
+		input:-moz-placeholder {
+			color: #fff!important;
+		}
+
+		*::-webkit-input-placeholder  {
+			color: #fff!important;
+		}
+
+		*:-ms-input-placeholder  {
+			color: #fff!important;
+		}
+
+		*:-moz-placeholder  {
+			color: #fff!important;
+		}
+	}
+
+	.icon {
+		padding-right: 10px;
+	}
+
+	.bottom {
+		position: absolute;
+		bottom: 0;
+	}
+}
+
+.login-container{
+    background-image: url('../../assets/bcakground/login.jpg');
+}
+
+.login-container div.fixed-content{
+    background-color: rgba(141, 218, 143, 0.38);
+}
+
+.login-header-container{
+    background: transparent;
+}
+
+.login-header-container h1{
+    margin-left: 28%;
+    margin-top: 17%;
+    color: #b9d6bb;
+}
+
+form .trasparent{
+    background: transparent !important;
+    color: white;
+}
+
+form{
+    margin-top: 30%;
+}
+
+.login-control{
+    background-color: rgba(255, 255, 255, 0.19) !important;
+    display: inline-block;
+    padding-right: 26px;
+    border: 1px solid white;
+    border-radius: 11px;
+    margin-top: 13px;
+    margin-left: 53px;
+}
+
+.login-control ion-input input{
+}
+
+.login-icon{
+    margin-right: 7px;
+}
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    background: transparent !important;
+}
+
+.login-submit-button{
+    background-color:rgba(98,255,108,.45);
+    margin-left: 14%;
+    border-radius: 9px;
+    margin-top: 12px;
+}
+
+.register-button{
+    background-color: rgba(175, 214, 50, 0.74);
+    margin-left: 14%;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    width: 40%;
+;
+}
+
+.facebook-button{
+    background-color: rgb(19, 44, 205);
+    width: 40%;
+    padding-left: 22px;
+    margin-left: 0;
+}
+
+.gmail-button{
+    background-color: red;
+    margin-left: 14%;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    width: 40%;;
+}
+
+.twitter-button{
+    background-color: rgba(135, 206, 235, 0.69);
+    width: 40%;
+    padding-left: 22px;
+    margin-left: 0;
+}
+
+.spaccing{
+    height: 30px;
+}
+
+.forget-password{
+    margin-left: 38%;
+}
+

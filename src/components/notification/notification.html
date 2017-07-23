@@ -1,0 +1,36 @@
+<ion-card class="card-container">
+  <ion-item class="card-header-container">
+    <ion-row>
+      <ion-avatar item-start>
+        <img [src]="'../../assets/profile_img/'+user.user_img">
+      </ion-avatar>
+      <div class="notification-title-container">
+        <h2> {{user.user_name}} </h2>
+        <ion-note> {{notification.ntf_Date}} </ion-note>
+      </div>
+    </ion-row>
+  </ion-item>
+
+  <img [src]="notification.ntf_imgName == null? 'https://assets.materialup.com/uploads/1625db22-55c3-431d-8581-e5a8916cadb1/bell.gif' : ''">
+
+  <ion-card-content>
+    <p>
+      {{notification.ntf_textContent}}
+    </p>
+  </ion-card-content>
+  <hr>
+    <div class="replay-container" *ngIf="!isReplay">
+      <button ion-button block icon-end (click)="replayNotification()">
+        <ion-row>
+          <ion-col class="icon-spacer-container">
+          </ion-col>
+          <ion-col>
+            Replay
+          </ion-col>
+          <ion-col>
+            <ion-icon name="ios-arrow-round-forward-outline" ></ion-icon>
+          </ion-col>
+        </ion-row>
+      </button>
+    </div>
+</ion-card>
