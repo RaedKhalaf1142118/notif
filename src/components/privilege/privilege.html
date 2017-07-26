@@ -1,0 +1,24 @@
+<ion-card>
+  <ion-list-header class="header">
+    {{privilege.title}}
+  </ion-list-header>
+
+  <ion-item *ngFor="let category of privilege.categories" (click)="onCategoryClick(category)">
+    <ion-row>
+      <ion-avatar>
+        <img [src]="category.img">
+      </ion-avatar>
+      <div class="description">
+        <h2>{{category.title}}</h2>
+        <ion-note>{{category.description | limitText: 35}}</ion-note>
+      </div>
+    </ion-row>
+  </ion-item>
+  <ion-item>
+    <div class="add-icon-container">
+      <button ion-button color="primary" icon-end block>
+        <ion-icon name="add-circle-outline" class="add-icon"></ion-icon>
+      </button>
+    </div>
+  </ion-item>
+</ion-card>

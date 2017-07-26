@@ -19,7 +19,7 @@
     </p>
   </ion-card-content>
   <hr>
-    <div class="replay-container" *ngIf="!isReplay">
+    <div class="replay-container" *ngIf="canReplayToNotifications()">
       <button ion-button block icon-end (click)="replayNotification()">
         <ion-row>
           <ion-col class="icon-spacer-container">

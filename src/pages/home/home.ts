@@ -13,8 +13,9 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: 'home.html'
 })
 export class HomePage implements OnInit {
+  isError = false;
   myCity: City = undefined;
-  cities: City[];
+  cities: City[] = undefined;
   categories: Category[] = undefined;
 
   constructor(
@@ -35,12 +36,26 @@ export class HomePage implements OnInit {
       this.locationService.currentCity = this.myCity;
       this.prepareCategories();
     });
+    setTimeout(() => {
+      if(this.cities == undefined){
+        this.displayError();
+      }
+    }, 5000);
   }
 
   prepareCategories(){
     this.categoryService.getCityCategories(this.myCity).subscribe( (categories) => {
       this.categories = categories;
     });
+    setTimeout(() => {
+      if(this.categories == undefined){
+        this.displayError();
+      }
+    }, 5000);
+  }
+
+  displayError(){
+    this.isError = true;
   }
 
   canAddCategory(){

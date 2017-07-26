@@ -12,7 +12,6 @@ export class ReplayNotificationPage implements OnInit{
   private loggedUser:User;
   private ownerUser:User;
   private notification: Notification;
-  private cityId:number;
   private category;
   private replays: { replayOwner: User, content:string }[] = undefined;
 
@@ -20,10 +19,7 @@ export class ReplayNotificationPage implements OnInit{
   }
 
   ngOnInit(){
-    this.loggedUser = this.navParams.get("loggedUser");
-    this.ownerUser = this.navParams.get("notificationOwner");
     this.notification = this.navParams.get("notification");
-    this.cityId = this.navParams.get("cityId");
     this.category = this.navParams.get("category");
   }
 }

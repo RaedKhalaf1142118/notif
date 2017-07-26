@@ -8,27 +8,4 @@ page-category-detail {
     .add-icon{
         font-size: 40px;
     }
-    
-    .add-notification-form{
-        margin-top: 5%;
-        textarea{
-            height: 100px;
-            border: 1px solid green;
-            border-radius: 5px;
-            padding: 10px;
-            margin-bottom: 0px;
-        }
-
-        .camera-icon{
-            font-size: 25px;
-        }
-
-        .camera-button{
-            background-color: #a8d4ab;
-        }
-
-        .camera-button:active{
-            background-color: rgba(94, 199, 81, 0.52);
-        }
-    }
 }

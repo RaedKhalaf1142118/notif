@@ -1,0 +1,22 @@
+<form class="add-notification-form">
+  <ion-textarea placeholder="Replay Content" [(ngModel)]="content" name="content"></ion-textarea>
+  <ion-row>
+    <ion-col>
+      <button ion-button  block color="primary" icon-start (click)="onAddNotification()">
+        <ion-icon name="ios-add-outline"></ion-icon>
+        Add
+      </button>
+    </ion-col>
+    <ion-col>
+      <button ion-button  block color="light" class="camera-button">
+        <ion-icon name="ios-camera-outline" class="camera-icon"></ion-icon>
+      </button>
+    </ion-col>
+    <ion-col>
+      <button ion-button block color="danger" icon-start (click)="cancelAddingNotification()">
+        <ion-icon name="ios-close-outline"> </ion-icon> 
+        Cancel
+      </button>
+    </ion-col>
+  </ion-row>
+</form>

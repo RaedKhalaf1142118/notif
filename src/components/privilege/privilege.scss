@@ -1,0 +1,28 @@
+ion-note {
+    font-size: 12px;
+    align-self: flex-start;
+    margin-top: 14px;
+}
+
+.header{
+    background-color: rgba(141, 218, 143, 0.53);
+}
+
+ion-card{
+    box-shadow: 0 2px 8px 4px rgba(0, 0, 0, 0.14), 0 3px 1000px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12) !important;
+}
+
+.description{
+    margin-left: 20px;
+}
+
+.add-icon{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.add-icon-container button{
+    width: 90%;
+    margin-left: 5%;
+    padding: 16px !important;
+}

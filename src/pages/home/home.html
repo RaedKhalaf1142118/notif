@@ -12,15 +12,20 @@
       {{myCity == undefined?'City':myCity.cityName}} : Categories
     </ion-note>
     <hr>
-    <div *ngIf="categories == undefined">
-      <ion-spinner name="bubbles"></ion-spinner>
-    </div> 
-    <div *ngIf="categories != undefined">
-      <div *ngIf="canAddCategory()">
-        <button ion-button block color="primary" class="add-button" (click)="addCategory()">
-           <ion-icon name="ios-add-circle-outline" class="add-icon"></ion-icon>
-        </button>
+    <div *ngIf="isError == true">
+      <error></error>
+    </div>
+    <div *ngIf="isError == false">
+      <div *ngIf="categories == undefined">
+        <ion-spinner name="bubbles"></ion-spinner>
+      </div> 
+      <div *ngIf="categories != undefined">
+        <div *ngIf="canAddCategory()">
+          <button ion-button block color="primary" class="add-button" (click)="addCategory()">
+            <ion-icon name="ios-add-circle-outline" class="add-icon"></ion-icon>
+          </button>
+        </div>
+        <category *ngFor="let category of categories" [category]="category"></category>
       </div>
-      <category *ngFor="let category of categories" [category]="category"></category>
     </div>
 </ion-content>

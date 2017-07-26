@@ -1,0 +1,39 @@
+<!--
+  Generated template for the PrivilegeRequestsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="main-nav-header">
+  <ion-navbar>
+    <ion-title>Privilege Requests</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngIf="requests == undefined">
+     <ion-spinner name="bubbles"></ion-spinner>
+  </div>
+  <div *ngIf="requests != undefined">
+    <ion-list>
+      <ion-item *ngFor="let request of requests; let i = index" class="request-container"
+      [ngStyle]="{'background-color': 'rgba(251, 0, 14, '+getRandomNumber(i)+')'}">
+        <h2> {{request.privilegeName}} </h2>
+        <p> {{request.requestDescription}} </p>
+        <hr>
+        <ion-row>
+          <ion-col>
+            <button ion-button block color="primary">
+              Confirm
+            </button>
+          </ion-col>
+          <ion-col>
+            <button ion-button block color="danger">
+              Delete Request
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

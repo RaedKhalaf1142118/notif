@@ -40,7 +40,7 @@
           </ion-item>
 
           <ion-item>
-            <ion-label><ion-icon name="ios-pin"></ion-icon></ion-label>
+            <ion-label class="select-label"><ion-icon name="ios-pin"></ion-icon></ion-label>
             <ion-select name="region" [(ngModel)]="model.user_region" placeholder="Region">
               <ion-option [value]="city.cityID" *ngFor="let city of cities"> 
                 {{city.cityName}}
@@ -50,11 +50,10 @@
 
           <ion-item>
             <ion-label><ion-icon name="ios-phone-portrait"></ion-icon></ion-label>
-            <ion-input  name="phoneNumber" [(ngModel)]="model.user_phone" placeholder="Phone number" type="password"></ion-input>
+            <ion-input  name="phoneNumber" [(ngModel)]="model.user_phone" placeholder="Phone number" type="number"></ion-input>
           </ion-item>
 
         </ion-list>
-  
         <button ion-button type="submit" class="continue-button">Register</button>
   
       </ion-col>

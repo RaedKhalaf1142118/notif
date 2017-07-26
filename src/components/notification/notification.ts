@@ -4,32 +4,44 @@ import { NavController } from 'ionic-angular';
 import { User } from '../../models/user.model';
 import { Notification } from '../../models/notification.model';
 import { ReplayNotificationPage } from '../../pages/replay-notification/replay-notification';
+import { AuthService } from '../../services/auth.service';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'notification',
   templateUrl: 'notification.html'
 })
 export class NotificationComponent implements OnInit{
-  @Input() category:{id:number,name:string};
-  @Input() cityId:number;
+  @Input() category:{id:number};
   @Input() notification:Notification;
   @Input() isReplay:boolean = false;
-
-  user:User = new User(1,"Raed","Raed",3,"Raed.Khalaf@Exalt.ps","Ramallah","0568242014",1,"raed.profile.jpg");
-  loggedUser:User = new User(1, "Nabeel","Nabeel",2,"Nabeel.Khalaf","Ramallah","0598303257",1,"nabeel.profile.jpg");
-  constructor(public navController:NavController) {
+  private tempImgName:string = "raed.profile.jpg";
+  
+  user:User = new User(1,"Loading","",5,"Loading","","",1,"default.profile.png");
+  
+  
+  constructor(
+    public navController:NavController,
+    public authService:AuthService,
+    public usersService: UsersService
+  ) {
   }
   
   ngOnInit(){
+    this.usersService.getUser(this.notification.user_ID).subscribe( (user) => {
+      user.user_img = this.tempImgName;  // this line is temp, in order to set the original user img.
+      this.user = user;
+    });
   }
 
   replayNotification(){
     this.navController.push(ReplayNotificationPage, {
       notification: this.notification,
-      notificationOwner: this.user,
-      loggedUser: this.loggedUser,
-      cityId:this.cityId,
       category:this.category
     });
+  }
+
+  canReplayToNotifications(){
+    return this.authService.canReplayToNotifications();
   }
 }

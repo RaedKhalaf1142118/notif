@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { 
   NavController, 
   NavParams, 
@@ -9,7 +9,7 @@ import {
 
 import { Category } from '../../models/category.model';
 import { CategoryService } from '../../services/category.service';
-//import { Notification } from '../../models/notification.model';
+import { Notification } from '../../models/notification.model';
 import { NotificationService } from '../../services/notification.service'; 
 import { LocationService } from '../../services/location.service';
 import { AuthService } from '../../services/auth.service';
@@ -22,9 +22,10 @@ export class CategoryDetailPage implements OnInit{
   category: Category = undefined;
   currentTab = "notification";
   subCategories:Category[] = undefined;
-  categories_notifications:any[] = undefined;
+  notifications:{notifications:Notification[] , category_ID:number[]} = undefined;
   isAddNotification = false;
-  @ViewChild('notificationContent') ntfContent;
+  canAddNotifications:boolean = false;
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 
@@ -35,19 +36,21 @@ export class CategoryDetailPage implements OnInit{
     public locationService:LocationService,
     public authService:AuthService,
     public toastController:ToastController
-  ) {
-  }
+  ) {}
 
   ngOnInit(){
     this.category = this.navParams.get('category');
-    //this.categoryService.getCategoryChildren(this.category).subscribe( (categories:any) => {
-     // this.subCategories = categories.categories;
-   // });
-    setTimeout(() => {
-      this.notificationService.getCategoryNotifications(this.category).subscribe( (notifications:any) => {
-        this.categories_notifications = notifications.allNotifications;
-      });
-    }, 500);
+    this.categoryService.getCategoryChildren(this.category).subscribe( (categories:any) => {
+      if(!categories.notifications){
+        this.subCategories = categories.categories;
+        this.notificationService.getCategoryNotifications(this.category).subscribe( (notifications:{notifications:Notification[] , category_ID:number[]} ) => {
+          this.notifications = notifications;
+        });
+      }else{
+        this.notifications = categories;
+        this.canAddNotifications = true;
+      }
+    });
   }
 
   addCategory(){
@@ -89,23 +92,15 @@ export class CategoryDetailPage implements OnInit{
     console.log(this.isAddNotification);
   }
 
-  onAddNotification(){
-    let content = this.ntfContent.value;
-    let userId = this.authService.getLoggedUser().user_ID;
-    // TO-DO => Add the Notification Img
-    let loading = this.loadingController.create({
-      content: "Please wait ..."
-    });
-    loading.present();
-    this.notificationService.addNotification({ntf_textContent:content, user_ID: userId, ntf_categoryID: this.category.category_ID}).subscribe( (data) => {
-      loading.dismiss();
-      this.toastController.create({
-        message:'Notification Added successfully',
-        duration: 1500
-      }).present;
-    });
+  canAddNotification(){
+    return this.authService.canAddNotification() && this.canAddNotifications;
   }
+  
   canAddCategory(){
     return this.authService.isAdminLogged();
+  }
+  
+  isThereSubCategories(){
+    return this.canAddNotifications;
   }
 }

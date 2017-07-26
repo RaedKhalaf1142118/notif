@@ -3,6 +3,7 @@ export class Notification{
         public ntf_ID:number,
         public ntf_Date:Date,
         public ntf_textContent:string,
-        public ntf_imgName:string
+        public ntf_imgName:string,
+        public user_ID:number
     ){}
 }

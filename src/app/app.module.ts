@@ -15,15 +15,22 @@ import { MapPage } from '../pages/map/map';
 import { RegisterPage } from '../pages/register/register';
 import { SettingsPage } from '../pages/settings/settings';
 import { CategoryDetailPage } from '../pages/category-detail/category-detail';
-import { AdminsPage } from '../pages/admins/admins';
 import { ReplayNotificationPage } from '../pages/replay-notification/replay-notification';
+import { PrivilegePage } from '../pages/privilege/privilege';
+import { AdminPrivilegePage } from '../pages/admin-privilege/admin-privilege';
+import { PrivilegeRequestsPage } from '../pages/privilege-requests/privilege-requests';
 
 import { LocationService } from '../services/location.service';
 import { AuthService } from '../services/auth.service';
+import { UsersService } from '../services/users.service';
 
 import { NotificationComponent } from '../components/notification/notification';
 import { CategoryComponent } from '../components/category/category';
-import { AdminsInCategoryComponent } from '../components/admins-in-category/admins-in-category';
+import { ErrorComponent } from '../components/error/error';
+import { AddNotificationComponent } from '../components/add-notification/add-notification';
+import { PrivilegeComponent } from '../components/privilege/privilege';
+
+import { LimitTextPipe } from '../pipes/limit-text.pipe';
 
 @NgModule({
   declarations: [
@@ -36,15 +43,20 @@ import { AdminsInCategoryComponent } from '../components/admins-in-category/admi
     SettingsPage,
     NotificationComponent,
     CategoryComponent,
-    AdminsPage,
-    AdminsInCategoryComponent,
-    ReplayNotificationPage
+    ReplayNotificationPage,
+    ErrorComponent,
+    PrivilegePage,
+    AddNotificationComponent,
+    LimitTextPipe,
+    AdminPrivilegePage,
+    PrivilegeComponent,
+    PrivilegeRequestsPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpModule,
-    FormsModule
+    FormsModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -55,8 +67,10 @@ import { AdminsInCategoryComponent } from '../components/admins-in-category/admi
     RegisterPage,
     SettingsPage,
     CategoryDetailPage,
-    AdminsPage,
-    ReplayNotificationPage
+    ReplayNotificationPage,
+    PrivilegePage,
+    AdminPrivilegePage,
+    PrivilegeRequestsPage
   ],
   providers: [
     StatusBar,
@@ -65,7 +79,8 @@ import { AdminsInCategoryComponent } from '../components/admins-in-category/admi
     Diagnostic,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     LocationService,
-    AuthService
+    AuthService,
+    UsersService
   ]
 })
 export class AppModule {}

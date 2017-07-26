@@ -4,7 +4,8 @@ import {
   NavParams,
   AlertController,
   LoadingController,
-  Nav
+  Nav,
+  ToastController
 } from 'ionic-angular';
 
 import { CityService } from '../../services/city.service';
@@ -25,7 +26,8 @@ export class RegisterPage implements OnInit{
     user_password: '',
     user_email: '',
     user_region: '',
-    user_phone: ''
+    user_phone: '',
+    user_type: 2
   };
   
 
@@ -36,7 +38,8 @@ export class RegisterPage implements OnInit{
     public alertController:AlertController,
     public loadingController:LoadingController,
     public registerService: RegisterService,
-    public nav:Nav
+    public nav:Nav,
+    public toastController:ToastController
   ) {
   } 
 
@@ -52,29 +55,58 @@ export class RegisterPage implements OnInit{
     let loading = this.loadingController.create({
       content:'Please wait'
     });
-    loading.present();
     if(isValid){
+      loading.present();
       this.registerService.register(this.model).subscribe( (data:any) => {
         loading.dismiss();
         this.nav.setRoot(LoginPage);
       });
-
     }else{
       loading.dismiss();
-      setTimeout(() => {
-        this.alertController.create({
-        title: 'invalid information',
-        buttons: [
-          {
-            text: 'Ok'
-          }
-        ]
-      }).present();
-      }, 500);
     }
   }
 
   validateForm(){
+    if(this.model.user_name.length == 0){
+      this.isRequired('Name is Required!');
+      return false;
+    }
+    if(this.model.user_email.length == 0){
+      this.isRequired('Email is Required!');
+      return false;
+    }
+    if(this.model.user_password.length == 0){
+      this.isRequired('Password is Required!');
+      return false;
+    }
+    if(this.model.user_region.length == 0){
+      this.isRequired('Region is Required!');
+      return false;
+    }
+    if(this.model.user_phone.length == 0){
+      this.isRequired('Phone number is Required!');
+      return false;
+    }
+    if(this.confirmPassword.length == 0){
+      this.isRequired('Confirm Password is Required!');
+      return false;
+    }
+    if(this.confirmPassword != this.model.user_password){
+      this.isRequired('Password is not confirmed!');
+      return false;
+    }
     return true;
+  }
+
+  private isRequired(message:string){
+    this.toastController.create({
+      message: message,
+      duration: 1000,
+      position: 'top'
+    }).present();
+  }
+
+  uploadImage(img){
+    console.log(img);
   }
 }

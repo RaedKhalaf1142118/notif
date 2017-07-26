@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, DoCheck } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { Nav, Platform, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -11,12 +11,21 @@ import { SettingsPage } from '../pages/settings/settings';
 import { CategoryService } from '../services/category.service';
 import { CityService } from '../services/city.service';
 import { NotificationService } from '../services/notification.service';
-import { AdminsPage } from '../pages/admins/admins';
 import { AuthService } from '../services/auth.service';
+import { LoginRegisterService } from '../services/login-register.service';
+import { PrivilegePage } from '../pages/privilege/privilege';
+import { AdminPrivilegePage } from '../pages/admin-privilege/admin-privilege';
+import { PrivilegeService } from '../services/privilege.service';
 
 @Component({
   templateUrl: 'app.html',
-  providers: [ CategoryService, CityService, NotificationService ]
+  providers: [ 
+    CategoryService, 
+    CityService, 
+    NotificationService,
+    LoginRegisterService,
+    PrivilegeService
+  ]
 })
 export class MyApp implements OnInit{
   @ViewChild(Nav) nav: Nav;
@@ -30,7 +39,8 @@ export class MyApp implements OnInit{
     public statusBar: StatusBar, 
     public splashScreen: SplashScreen,
     public authService: AuthService,
-    public alertController:AlertController
+    public alertController:AlertController,
+    public loginRegisterService:LoginRegisterService
   ) {
     this.initializeApp();
 
@@ -51,6 +61,13 @@ export class MyApp implements OnInit{
     this.authService.onLogged.subscribe( () =>{
       this.initializePages();
     });
+    this.initializeLisenters();
+  }
+
+  initializeLisenters(){
+    this.loginRegisterService.onSignUp.subscribe( () => {
+      this.nav.setRoot(RegisterPage);
+    });
   }
 
   initializePages(){
@@ -60,7 +77,9 @@ export class MyApp implements OnInit{
       { title: 'Map', component: MapPage, icon: 'md-map', condition: this.authService.isLogged()},
       { title: 'Register', component: RegisterPage, icon: 'ios-add-outline', condition: !this.authService.isLogged()},
       { title: 'Settings',component:SettingsPage, icon: 'ios-settings-outline', condition: this.authService.isLogged()},
-      { title: 'Logout', component: HomePage, icon: 'ios-exit-outline', condition: this.authService.isLogged()}
+      { title: 'Logout', component: HomePage, icon: 'ios-exit-outline', condition: this.authService.isLogged()},
+      { title: 'Privileges', component: PrivilegePage, icon: 'md-checkbox-outline', condition: this.authService.isNormalUserLogged()},
+      { title: 'Privileges', component: AdminPrivilegePage, icon: 'md-checkbox-outline', condition: this.authService.isAdminLogged()}
     ];
     this.pages = this.pages.filter( (page) =>{
       return page.condition;

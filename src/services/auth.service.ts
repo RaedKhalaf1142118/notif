@@ -7,10 +7,10 @@ export class AuthService implements OnInit{
     private isLoggedIn = false;
     userLogged:User;
     @Output() onLogged = new EventEmitter();
+
     saveUser(data:User){    
         data.user_password = '';
         localStorage.setItem('user',JSON.stringify(data));
-        this.userLogged = data;
         this.isLoggedIn = true;
         this.onLogged.emit();
     }
@@ -42,6 +42,26 @@ export class AuthService implements OnInit{
 
     isAdminLogged(){
         // TO-DO add the isAdmin Logged logic
+        let loggedUser = this.getLoggedUser();
+        return loggedUser == undefined? false : loggedUser.user_Type == 1;
+    }
+    
+    canAddNotification(){
+        // TO-DO add the canAddNotification logic
         return this.isLogged();
+    }
+
+    canReplayToNotifications(): boolean{
+        // TO-DO add the canReplayToNotifications logic
+        return this.isLogged();
+    }
+
+    getLoggedUserId(): number{
+        return JSON.parse(localStorage.getItem('user')).user_ID;
+    }
+
+    isNormalUserLogged(): boolean{
+        let loggedUser = this.getLoggedUser();
+        return loggedUser == undefined? false: loggedUser.user_Type == 2;
     }
 }

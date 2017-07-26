@@ -7,7 +7,7 @@
 
 <ion-content padding>
   <ion-segment [(ngModel)]="currentTab">
-    <ion-segment-button value="sub-categories">
+    <ion-segment-button value="sub-categories" *ngIf="canAddNotifications == false">
       Sub-Categories
     </ion-segment-button>
     <ion-segment-button value="notification">
@@ -28,43 +28,22 @@
       </div>
   </div>
   <div *ngIf="currentTab == 'notification'">
-    <div *ngIf="categories_notifications == undefined">
+    <div *ngIf="notifications == undefined">
       <ion-spinner name="bubbles"></ion-spinner>
     </div>
-    <div *ngIf="categories_notifications != undefined">      
-      <div *ngIf="isAddNotification == true">
-        <form class="add-notification-form">
-          <ion-textarea placeholder="Replay Content" #notificationContent></ion-textarea>
-          <ion-row>
-            <ion-col>
-              <button ion-button  block color="primary" icon-start (click)="onAddNotification()">
-                <ion-icon name="ios-add-outline"></ion-icon>
-                Add
-              </button>
-            </ion-col>
-            <ion-col>
-              <button ion-button  block color="light" class="camera-button">
-                <ion-icon name="ios-camera-outline" class="camera-icon"></ion-icon>
-              </button>
-            </ion-col>
-            <ion-col>
-              <button ion-button block color="danger" icon-start (click)="addNotification()">
-                <ion-icon name="ios-close-outline"> </ion-icon> 
-                Cancel
-              </button>
-            </ion-col>
-          </ion-row>
-        </form>
-      </div>
-      <div *ngIf="isAddNotification == false">
-        <button ion-button block color="primary" class="add-button" (click)="addNotification()">
-          <ion-icon name="ios-add-circle-outline" class="add-icon"></ion-icon>
-        </button>
-      </div>
-      <div *ngFor="let cat_ntf of categories_notifications">
-        <div *ngFor="let ntf of cat_ntf.notifications">
-          <notification [category]="{id:cat_ntf.category_ID,name: cat_ntf.category_Name}" [cityId]="cat_ntf.cityID" [notification]="ntf"></notification>
+    <div *ngIf="notifications != undefined">
+      <div *ngIf="canAddNotification()">
+        <div *ngIf="isAddNotification == true">
+          <add-notification (onCancel)="addNotification()" [categoryId]="category.category_ID"></add-notification>
         </div>
+        <div *ngIf="isAddNotification == false">
+          <button ion-button block color="primary" class="add-button" (click)="addNotification()">
+            <ion-icon name="ios-add-circle-outline" class="add-icon"></ion-icon>
+          </button>
+        </div>
+      </div>
+      <div *ngFor="let notification of notifications.notifications; let i = index">
+        <notification [category]="{id:notifications.category_ID[i]}" [notification]="notification"></notification>
       </div>
     </div>
   </div>  

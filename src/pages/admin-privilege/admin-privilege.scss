@@ -1,0 +1,24 @@
+page-admin-privilege {
+    .add-icon{
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    .add-icon-container button{
+        width: 90%;
+        margin-left: 5%;
+    }
+
+    .requests{
+        color: #d03e84;
+    }
+    
+    .requests-container{
+       background-color: rgba(155, 215, 213, 0.88);
+       box-shadow: 4px 3px 58px -11px;
+       border-radius: 20px 100px 20px 100px;
+       span{
+           margin-left: 15px;
+       }
+    }
+}

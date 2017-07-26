@@ -1,6 +1,7 @@
-category {
-
-}
+    .category{
+        box-shadow: 18px 11px 65px -23px;
+        border-radius: 5px;
+    }
 
 .category-button{
     background-color: rgba(179, 224, 176, 0.3);
@@ -15,5 +16,13 @@ category {
 
     ion-col{
         padding: 0;
+    }
+
+    .title-container{
+        margin-top: 29%;
+        margin-left: 16%;
+    }
+    img{
+        border-radius: 5px;
     }
 }

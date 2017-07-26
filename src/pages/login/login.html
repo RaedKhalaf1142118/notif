@@ -22,10 +22,10 @@
       <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
         <ion-list no-line>
           <ion-item>
-            <ion-input type="email" placeholder="Email"></ion-input>
+            <ion-input type="email" placeholder="Email" [(ngModel)]="model.user_email" name="email"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input type="password" placeholder="Password"></ion-input>
+            <ion-input name="password" type="password" placeholder="Password" [(ngModel)]="model.user_password"></ion-input>
           </ion-item>
           <a>Forgot your password</a>
           <button ion-button block outline color="light">Log in</button>
@@ -37,5 +37,5 @@
       </form>
 		</ion-card-content>
 	</ion-card>
-	<button class="bottom" ion-button clear full color="light">Don't have an account? Sign up</button>
+	<button class="bottom" ion-button clear full color="light" (click)="onSignUp()">Don't have an account? Sign up</button>
 </ion-content>

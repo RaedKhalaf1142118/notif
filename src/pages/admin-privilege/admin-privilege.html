@@ -1,0 +1,32 @@
+<ion-header class="main-nav-header">
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Privileges</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item class="requests-container" (click)="showPrivilegeRequests()"> 
+    <ion-row>
+      <ion-col col-10>
+        <ion-icon name='git-pull-request-outline' class="requests" item-start></ion-icon>
+        <span>Privileges Requests</span>
+      </ion-col>
+      <ion-col col-2>
+        <ion-badge item-end>{{requestsSize}}</ion-badge>
+      </ion-col>
+    </ion-row>
+  </ion-item>
+
+  <ion-list>
+    <privilege *ngFor="let privilege of privileges" [privilege]="privilege"></privilege>
+    <div class="add-icon-container">
+      <button ion-button color="primary" icon-end block>
+        <ion-icon name="add-circle-outline" class="add-icon"></ion-icon>
+      </button>
+    </div>
+  </ion-list>
+</ion-content>

@@ -11,6 +11,7 @@ import {
 import { HomePage } from '../home/home';
 import { LoginService } from '../../services/login.service';
 import { AuthService } from '../../services/auth.service';
+import { LoginRegisterService } from '../../services/login-register.service';
 
 @Component({
   selector: 'page-login',
@@ -32,7 +33,8 @@ export class LoginPage implements OnInit{
     public alertController:AlertController,
     public loadingController:LoadingController,
     public nav:Nav,
-    public authService: AuthService
+    public authService: AuthService,
+    public loginRegisterService:LoginRegisterService
   ) {
   }
 
@@ -52,13 +54,11 @@ export class LoginPage implements OnInit{
 
   onSubmit(){
     let isValid = this.validateForm();
-    
-    let loading = this.loadingController.create({
-      content: 'please wait...',
-    });
-    loading.present();
-
     if(isValid){
+      let loading = this.loadingController.create({
+        content: 'please wait...',
+      });
+      loading.present();
       this.loginService.login(this.model).subscribe( (data) => {
         if(data == false){
           loading.dismiss();
@@ -77,6 +77,28 @@ export class LoginPage implements OnInit{
   }
 
   private validateForm(): boolean{
+    if(this.model.user_email.length == 0){
+      this.toastController.create({
+        message: 'Email is Required!',
+        duration: 1000,
+        position: 'top'
+      }).present();
+      return false;
+    }
+
+    if(this.model.user_password.length == 0){
+      this.toastController.create({
+        message: 'Password is Required',
+        duration: 1000,
+        position: 'top'
+      }).present();
+      return false;
+    }
+    
     return true;
+  }
+
+  onSignUp(){
+    this.loginRegisterService.goToSignUp();
   }
 }

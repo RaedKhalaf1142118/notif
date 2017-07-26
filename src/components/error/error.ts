@@ -1,21 +1,21 @@
 import { Component } from '@angular/core';
 
 /**
- * Generated class for the AdminsInCategoryComponent component.
+ * Generated class for the ErrorComponent component.
  *
  * See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
  * for more info on Angular Components.
  */
 @Component({
-  selector: 'admins-in-category',
-  templateUrl: 'admins-in-category.html'
+  selector: 'error',
+  templateUrl: 'error.html'
 })
-export class AdminsInCategoryComponent {
+export class ErrorComponent {
 
   text: string;
 
   constructor() {
-    console.log('Hello AdminsInCategoryComponent Component');
+    console.log('Hello ErrorComponent Component');
     this.text = 'Hello World';
   }
 
